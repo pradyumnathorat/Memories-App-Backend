@@ -4,7 +4,6 @@ const getPosts = async (req, res) => {
     try {
         const postMessage = await PostMessage.find();
         res.status(200).json(postMessage)
-        // console.log(postMessage);
     } catch (err) {
         res.status(404).json({ message: err.message })
     }
@@ -12,7 +11,6 @@ const getPosts = async (req, res) => {
 
 const createPost = async (req, res) => {
     const post = req.body;
-    // console.log(post);
     const newPost = new PostMessage(post)
     try {
         await newPost.save();
@@ -25,11 +23,8 @@ const createPost = async (req, res) => {
 const updatePost = async (req, res) => {
     const { id: _id } = req.params;
     const post = req.body;
-    // console.log(id);
-    // console.log(post);
     try {
         const updatePost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
-        console.log(updatePost);
         res.status(200).json(updatePost)
 
     } catch (err) {
